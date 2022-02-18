@@ -1,2 +1,41 @@
-<h1>Logged in successfully</h1>
-<a href="/" class="btn btn-danger">Log out</a>
+<div class="css">
+<h4>{{user.name}} </h4>
+<form action="/add-posts" method="post">
+<input type="hidden" class="form-control"  value="{{user.email}}" name="email">
+<input type="hidden" class="form-control"  value="{{user.name}}" name="name">
+<button class="btn btn-primary" style="width:100px">Add post</button><br><br>
+<a href="/" class="btn btn-danger" style="width: 100px;">Log out</a>
+</form>
+</div>
+{{#each posts}}
+<div>
+<h5>{{this.name}}</h5><br>
+<span>{{this.title}}</span><br>
+<img src="images/{{this._id}}.jpg"  width="500px" height="300px">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<i style="width: 50px;" onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
+<br>
+
+
+
+<form action="/comment" method="post">
+<input type="hidden" value="{{this._id}}" name="id">
+<input type="text" name="comment">
+<button>comment</button>
+</form> 
+{{#each comment}}
+<div>
+<h6>{{this}}</h6><br>
+</div>
+{{/each}} 
+  <br>
+<a href="/login/delete/{{this._id}}" class="btn btn-danger">delete post</a>
+</div>
+{{/each}}
+
+<script>
+    function myFunction(x) {
+  x.classList.toggle("fa-thumbs-down");
+}
+
+</script>

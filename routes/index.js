@@ -16,8 +16,12 @@ router.get('/signup',(req,res)=>{
 })
 router.post('/login',async(req,res)=>{
   let user=await helpers.login(req.body)
-  if(user)
-  res.render('logged');
+  if(user){
+    let posts=await helpers.getData()
+    let comments=posts.comment;
+    res.render('logged',{user,posts,comments});
+  }
+
   else{
     let loginErr=true
     res.render('login-page',{loginErr});
@@ -51,6 +55,32 @@ router.post('/createpass',async(req,res)=>{
   console.log(req.body);
   let user=await helpers.setPass(req.body);
   res.redirect('/login')
+})
+router.post('/add-posts',async(req,res)=>{
+  //console.log(req.body);
+  let user=req.body;
+  res.render('add-post',{user})
+})
+router.post('/add-post',(req,res)=>{
+  let image=req.files.Image;
+  helpers.addPost(req.body,(id)=>{
+    image.mv('./public/images/'+id+'.jpg',async(err,done)=>{
+      let user=req.body
+      let posts=await helpers.getData()
+    //res.render('logged',{user,posts});
+    })
+  })
+})
+router.get('/login/delete/:id',async(req,res)=>{
+  let id=req.params.id;
+  let status=await helpers.delete(id);
+  res.render('delete');
+  
+})
+router.post('/comment',async(req,res)=>{
+  console.log(req.body);
+  await helpers.comment(req.body);
+  res.render('comment');
 })
 
 module.exports = router;

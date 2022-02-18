@@ -1,0 +1,32 @@
+<div class="container">
+	<div class="row">
+	    
+	    <div class="col-md-8 col-md-offset-2">
+	        
+    		<h1>Add post</h1>
+    		{{#if user}}
+    		<form action="/add-post" method="POST" enctype="multipart/form-data" >
+    		    <input type="hidden" class="form-control"  value="{{user.email}}" name="email">
+                <input type="hidden" class="form-control"  value="{{user.name}}" name="name">
+    		    <div class="form-group">
+    		        <label for="title">Title <span class="require">*</span></label>
+    		        <input type="text" class="form-control" name="title" />
+    		    </div>
+                <label>image</label>
+                <input type="file" name="Image" id="fileToUpload">
+    		    
+    		    <div class="form-group">
+    		        <button onClick="alert('data added')" type="submit" class="btn btn-primary">
+    		            Add
+    		        </button>
+    		        <button class="btn btn-default">
+    		            Cancel
+    		        </button>
+    		    </div>
+    		    
+    		</form>
+            {{/if}}
+		</div>
+		
+	</div>
+</div>
