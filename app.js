@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongodb = require("./mongodb/connection");
 var fileUpload = require("express-fileupload")
+var jwt=require("jsonwebtoken");
 
 var indexRouter = require('./routes/index');
 //var usersRouter = require('./routes/users');

@@ -4,10 +4,7 @@
 	    <div class="col-md-8 col-md-offset-2">
 	        
     		<h1>Add post</h1>
-    		{{#if user}}
-    		<form action="/add-post" method="POST" enctype="multipart/form-data" >
-    		    <input type="hidden" class="form-control"  value="{{user.email}}" name="email">
-                <input type="hidden" class="form-control"  value="{{user.name}}" name="name">
+    		<form action="/add-posts" method="post" enctype="multipart/form-data" >
     		    <div class="form-group">
     		        <label for="title">Title <span class="require">*</span></label>
     		        <input type="text" class="form-control" name="title" />
@@ -25,7 +22,7 @@
     		    </div>
     		    
     		</form>
-            {{/if}}
+     
 		</div>
 		
 	</div>

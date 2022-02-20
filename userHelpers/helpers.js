@@ -74,7 +74,6 @@ addPost : (userdata,callback)=>{
 getData : ()=>{
     return new Promise(async (resolve,reject)=>{
         let posts=await db.get().collection('posts').find().toArray()
-        console.log(posts);
         resolve(posts)
     })
 },
